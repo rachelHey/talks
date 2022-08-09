@@ -1,0 +1,36 @@
+.gdbar img {
+  width: 480px !important;
+  height: 130px !important;
+}
+
+.gdbar {
+  width: 530px !important;
+  height: 150px !important;
+}
+
+aside.gdbar {
+  top: 50px;
+}
+
+slides > slide:not(.nobackground):before {
+  width: 150px;
+  height: 55px;
+  background-size: 150px 55px;
+}
+
+slides > slide.title-slide hgroup h1 {
+  font-weight: bold;
+  font-size: 27pt;
+  margin-right: 1em;
+}
+
+slides > slide.title-slide hgroup h2 {
+  font-size: 22pt;
+}
+
+h2 {
+  font-size: 35px;
+  line-height: 65px;
+  letter-spacing: -2px;
+  color: #515151;
+}

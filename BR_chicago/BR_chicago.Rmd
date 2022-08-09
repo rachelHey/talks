@@ -1,0 +1,59 @@
+---
+title: "A Bayesian Approach to Address Bias in the Peer Review Ranking of Grant Proposals Submitted to the Swiss National Science Foundation"
+subtitle: "Ninth International Congress on Peer Review and Scientific Publication, Chicago"
+author: "_Rachel Heyard_, Manuela Ott, Janine Bühler, Georgia Salanti, Matthias Egger"
+date: 'Friday, September 9th 2022'
+output: 
+  ioslides_presentation: 
+    incremental: true
+    widescreen: true
+    css: styles.css
+    logo: snsf_logo.png
+---
+
+<script src="webfont.js"></script>
+<script src="snap.svg-min.js"></script>
+<script src="underscore-min.js"></script>
+<script src="sequence-diagram-min.js"></script>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR drawings1.png"}
+## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR drawings2.png"}
+##  {data-background="drawings/BR drawings3.png"}
+##   {data-background="drawings/BR drawings4.png"}
+##   {data-background="drawings/BR drawings5.png"}
+##   {data-background="drawings/BR drawings6.png"}
+
+## From idea to funding decision at the SNSF (prior to 2022){.smaller data-background="drawings/BR drawings1.png"}
+
+<br><br><br><br><br><br><br>
+
+Proposal ID | Voter 1 | Voter 2 |  Voter 3 | Voter 4 | Voter 5 | Voter 6 | Voter 7 | Voter 8 | Voter 9 | Voter 10 | Voter 11 | Average
+--| -- | -- |-- | -- |-- | -- |-- | -- |-- | -- |-- | --
+\#1 | C | AB | A | BC | B | AB | AB | A | AB | AB| B | 4.55 
+\#2 | A | C | AB | BC | COI | AB | AB | AB | A | AB | B | 4.6
+\#3 | A | A | A | AB | C | C | AB | A | A | C | A |4.73
+\#4 | A | AB | AB | A | AB | A | A | COI | COI | COI | A | 5.63
+\#5 | C | C | BC | D | BC | COI | C | BC | COI | C | BC | 2.33
+
+## Ranking based on Averages
+
+* (+) Easily computed  
+
+* (+) Easy to communicate
+
+<br>
+
+* (-) The effect of COIs and other abstentions seems arbitrary!  
+* (-) Highly influenced by outliers: Reviewer or Panel effect.  
+* (-) What is a meaningful difference? It depends…
+
+
+## Solution: Bayesian Ranking
+
+A Bayesian Hierarchical Model is used to model the evaluation scores given by the different panel members:
+
+$$y_{ij} = \nu + \theta_i + \gamma_j + \epsilon_{ij}$$
