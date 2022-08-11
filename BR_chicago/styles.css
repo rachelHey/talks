@@ -1,3 +1,12 @@
+slides > slide {
+  font-size: 18pt;
+  color: black;
+  line-height: 1.5;
+}
+slides > slide {
+  background: white;
+}
+
 .gdbar img {
   width: 480px !important;
   height: 130px !important;
@@ -12,10 +21,14 @@ aside.gdbar {
   top: 50px;
 }
 
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+
 slides > slide:not(.nobackground):before {
-  width: 150px;
-  height: 55px;
-  background-size: 150px 55px;
+  width: 200px;
+  height: 50px;
+  background-size: 200px 50px;
 }
 
 slides > slide.title-slide hgroup h1 {
@@ -33,4 +46,16 @@ h2 {
   line-height: 65px;
   letter-spacing: -2px;
   color: #515151;
+}
+
+ul > li:before {
+  content: ' ';
+  margin-left: -1em;
+  position: absolute;
+  font-weight: 600;
+}
+
+th{
+  color: white !important;
+  background: gray !important;
 }

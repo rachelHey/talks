@@ -10,50 +10,92 @@ output:
     css: styles.css
     logo: snsf_logo.png
 ---
-
-<script src="webfont.js"></script>
-<script src="snap.svg-min.js"></script>
-<script src="underscore-min.js"></script>
-<script src="sequence-diagram-min.js"></script>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR drawings1.png"}
 ## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR drawings2.png"}
-##  {data-background="drawings/BR drawings3.png"}
 ##   {data-background="drawings/BR drawings4.png"}
 ##   {data-background="drawings/BR drawings5.png"}
 ##   {data-background="drawings/BR drawings6.png"}
 
 ## From idea to funding decision at the SNSF (prior to 2022){.smaller data-background="drawings/BR drawings1.png"}
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
-Proposal ID | Voter 1 | Voter 2 |  Voter 3 | Voter 4 | Voter 5 | Voter 6 | Voter 7 | Voter 8 | Voter 9 | Voter 10 | Voter 11 | Average
+**ID** | **Voter 1** | **Voter 2** |  **Voter 3** | **Voter 4** | **Voter 5** | **Voter 6** | **Voter 7** | **Voter 8** | **Voter 9** | **Voter 10** | **Voter 11** | **Average**
 --| -- | -- |-- | -- |-- | -- |-- | -- |-- | -- |-- | --
 \#1 | C | AB | A | BC | B | AB | AB | A | AB | AB| B | 4.55 
-\#2 | A | C | AB | BC | COI | AB | AB | AB | A | AB | B | 4.6
+\#2 | A | C | AB | BC | **COI** | AB | AB | AB | A | AB | B | 4.6
 \#3 | A | A | A | AB | C | C | AB | A | A | C | A |4.73
-\#4 | A | AB | AB | A | AB | A | A | COI | COI | COI | A | 5.63
-\#5 | C | C | BC | D | BC | COI | C | BC | COI | C | BC | 2.33
+\#4 | A | AB | AB | A | AB | A | A | **COI** | **COI** | **COI** | A | 5.63
+\#5 | C | C | BC | D | BC | **COI** | C | BC | **COI** | C | BC | 2.33
 
-## Ranking based on Averages
+## Ranking based on Averages - not optimal
 
-* (+) Easily computed  
+Easily computed and communicated, but 
 
-* (+) Easy to communicate
-
-<br>
-
-* (-) The effect of COIs and other abstentions seems arbitrary!  
-* (-) Highly influenced by outliers: Reviewer or Panel effect.  
-* (-) What is a meaningful difference? It depends…
+* **-** The effect of COIs and other abstentions seems arbitrary!  
+* **-** Highly influenced by outliers: Reviewer or Panel effect.  
+* **-** What is a meaningful difference? It depends…
 
 
-## Solution: Bayesian Ranking
+## Possible solution: Bayesian Ranking combined with Lottery
 
-A Bayesian Hierarchical Model is used to model the evaluation scores given by the different panel members:
 
-$$y_{ij} = \nu + \theta_i + \gamma_j + \epsilon_{ij}$$
+- Let's assume that  $y_{ij}$ is the estimation of the quality of proposal $i$ by voter $j$.
+
+- Bayesian Hierarchical Model (given some priors) for the panel votes:
+$$y_{ij} \ | \ \theta_i, \lambda_{ij} \sim  N(\bar{y} + \theta_i + \lambda_{ij}, \sigma^2)$$
+  $$\theta_i  \sim  N(0, \tau^2_{\theta})$$
+  
+  $$\lambda_{ij}  \sim  N(\nu_j, \tau^2_{\lambda})$$
+  
+  
+<br> 
+
+- Then, we extract the **distribution of the rank of the $\theta_i$** to achieve the Bayesian Ranking.
+
+
+## Funding Recommendation {.smaller data-background="Figure_br.png"}
+
+## Funding Recommendation 
+Group  | Count | Percentage
+--| -- | --
+Accepted | 100 | 28%
+Random selection | 12 | 4%
+Rejected | 241 | 68%
+
+
+## Bayesian Ranking adapted by the SNSF and fully integrated in process in Fall 2022
+
+Main Lesson learned: 
+
+- Panel members fear to lose power of decision making (to an algorithm)
+    - present BR results as recommendations
+    - focus on transparent communication:
+      - Methodology implemented in an `R`-package available on github 
+        [ERforResearch](https://github.com/snsf-data/ERforResearch)
+      - Scientific publication available now from _Statistics and Public Policy_
+       [DOI: 10.1080/2330443X.2022.2086190](https://www.tandfonline.com/doi/full/10.1080/2330443X.2022.2086190)
+
+## License{.smaller}
+
+![](by.png){height=150px}  
+This presentation is licensed with a CC-BY international license 4.0 https://creativecommons.org/licenses/by/4.0/
+
+Available from [github](rachelhey.github.io/talks/BR_chicago).
+
+Please cite as: R Heyard, M Ott, J Bühler, G Salanti, M Egger "A Bayesian Approach to Address Bias in the Peer Review Ranking of Grant Proposals Submitted to the Swiss National Science Foundation", International Congress on Peer Review and Scientific Publication, 2022.
+
+
+<center>
+<font size="10">Thank you!</font>
+</center>
+
+
+
+
+
+
