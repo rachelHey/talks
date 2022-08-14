@@ -14,13 +14,14 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR drawings1.png"}
-## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR drawings2.png"}
-##   {data-background="drawings/BR drawings4.png"}
-##   {data-background="drawings/BR drawings5.png"}
-##   {data-background="drawings/BR drawings6.png"}
 
-## From idea to funding decision at the SNSF (prior to 2022){.smaller data-background="drawings/BR drawings1.png"}
+## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR_dawings_new1.png"}
+## From idea to funding decision at the SNSF (prior to 2022) {data-background="drawings/BR_dawings_new2.png"}
+##   {data-background="drawings/BR_dawings_new3.png"}
+##   {data-background="drawings/BR_dawings_new4.png"}
+##   {data-background="drawings/BR_dawings_new5.png"}
+
+## From idea to funding decision at the SNSF (prior to 2022){.smaller data-background="drawings/BR_dawings_new1.png"}
 
 <br><br><br><br><br><br><br><br>
 
@@ -28,9 +29,9 @@ knitr::opts_chunk$set(echo = FALSE)
 --| -- | -- |-- | -- |-- | -- |-- | -- |-- | -- |-- | --
 \#1 | C | AB | A | BC | B | AB | AB | A | AB | AB| B | 4.55 
 \#2 | C | AB | A | BC | **COI** | AB | AB | A | AB | AB | B | 4.6
-\#3 | A | A | A | AB | C | C | AB | A | A | C | A |4.73
-\#4 | A | AB | AB | A | AB | A | A | **COI** | **COI** | **COI** | A | 5.63
-\#5 | C | C | BC | D | BC | **COI** | C | BC | **COI** | C | BC | 2.33
+\#3 | A | A | .. | .. | .. | .. | .. | .. | .. | C | A |4.73
+\#4 | A | AB | .. | .. | .. | .. | .. | .. | .. | **COI** | A | 5.63
+\#5 | C | C |.. | .. | .. | .. | .. | .. | .. | C | BC | 2.33
 
 ## Simple ranking based on averages - not optimal
 
@@ -39,6 +40,14 @@ Easily computed and communicated, but
 * **-** The effect of COIs and other abstentions seems arbitrary!  
 * **-** Highly influenced by outliers: Reviewer or Panel effect.  
 * **-** What is a meaningful difference? It depends…
+
+<br>
+
+* We need a method that
+* $\rightarrow$ allows to split scientific evaluation and funding decision 
+<!-- (no biased funding$line discussions) -->
+* $\rightarrow$ define the funding line and a lottery group in a consistent, transparent and reproducible way
+
 
 
 ## Possible solution: Bayesian Ranking combined with Lottery
@@ -66,24 +75,35 @@ $$y_{ij} \ | \ \theta_i, \lambda_{ij} \sim  N(\bar{y} + \theta_i + \lambda_{ij},
  68% rejected (241)  
 
 
+## Pros and cons of Bayesian Ranking
+
+- **+** Quantify uncertainty with respect to the true rank  
+  **+** Truly comparative ranking  
+  **+** Adjust for grading habits of panel members (and possible of panels)
+
+<br> <br>
+
+- **-** Higher complexity  
+  **-** Longer and intense computation needed
+
+
 ## Bayesian Ranking adopted by the SNSF and fully integrated in process in Fall 2022
 
-Main Lesson learned: 
+**Lessons learned** 
 
-- Panel members fear to lose power of decision making (to an algorithm)
-    - present BR results as recommendations
-    - focus on transparent communication:
-      - Methodology implemented in an `R`-package available on github 
-        [ERforResearch](https://github.com/snsf-data/ERforResearch)
-      - Scientific publication available now from _Statistics and Public Policy_
-       [DOI: 10.1080/2330443X.2022.2086190](https://www.tandfonline.com/doi/full/10.1080/2330443X.2022.2086190)
+- Bayesian Ranking is a (still imperfect) decision making tool
+- Limitations and assumptions need to be clearly communicated
+- Developement and implementation process needs to be communicated transparently and all panel members should be included in discussion ($e.g$ no black box)  
+
+- Methodology implemented in `R`-package available on github [ERforResearch](https://github.com/snsf-data/ERforResearch)  
+   Scientific publication available from _Statistics and Public Policy_ [DOI: 10.1080/2330443X.2022.2086190](https://www.tandfonline.com/doi/full/10.1080/2330443X.2022.2086190)
 
 ## License{.smaller}
 
 ![](by.png){height=150px}  
 This presentation is licensed with a CC-BY international license 4.0 https://creativecommons.org/licenses/by/4.0/
 
-Available from [github](rachelhey.github.io/talks/BR_chicago).
+Available from github: [rachelhey.github.io/talks/BR_chicago](rachelhey.github.io/talks/BR_chicago).
 
 Please cite as: R Heyard, M Ott, J Bühler, G Salanti, M Egger "A Bayesian Approach to Address Bias in the Peer Review Ranking of Grant Proposals Submitted to the Swiss National Science Foundation", International Congress on Peer Review and Scientific Publication, 2022.
 
