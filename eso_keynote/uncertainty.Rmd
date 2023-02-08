@@ -1,0 +1,493 @@
+---
+title: "Let's talk about uncertainty in funding allocation"
+subtitle: "ESO 2023 Workshop - Peer Review Under Review"
+author: "_Rachel Heyard_"
+date: 'Wednesday, February 8th 2022'
+output: 
+  ioslides_presentation: 
+    incremental: true
+    widescreen: true
+    css: styles.css
+    logo: UZH_CRS.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.path = "figures/",
+                      warning = FALSE, message = FALSE) 
+
+library(ERforResearch)
+library(kableExtra)
+library(stringr)
+library(readr)
+
+re_sample <- FALSE 
+```
+
+
+```{r get-data}
+# Load the data from Zenodo:
+path_to_xlsx <- "https://zenodo.org/record/4531160/files/individual_votes.xlsx"
+stem_mat <- openxlsx::read.xlsx(xlsxFile = path_to_xlsx, sheet = "pm_stem")
+stem <- stem_mat %>% 
+  get_right_data_format(prefix_assessor = "voter")
+
+assessor_coi <-
+  stem %>% 
+  group_by(assessor) %>% 
+  count() %>% 
+  mutate(assessor_coi = n != 18) %>% 
+  select(-n)
+proposal_coi <-
+  stem %>% 
+  group_by(proposal) %>% 
+  count() %>% 
+  mutate(proposal_coi = n != 29) %>% 
+  select(-n)
+
+stem <- stem %>% 
+  left_join(assessor_coi) %>% 
+  left_join(proposal_coi) 
+```
+
+```{r some-helper-functions}
+## Some helper functions for later:
+# Function to extract the Intraclass correlation coefficient (ICC) from the 
+# matrix of individual votes:
+get_icc_from_matrix <- function(individual_votes) {
+  (individual_votes %>% 
+     select(-proposal) %>% 
+     mutate_all(function(x) ERforResearch:::get_num_grade_snsf(x)) %>% 
+     as.data.frame() %>% 
+     psych::ICC(x = ., missing = FALSE))$results %>% 
+    filter(type == "ICC3") %>% # A fixed set of k judges rates each target
+    mutate(icc = paste0(round(ICC, 2), " (",
+                        round(`lower bound`, 2), "; ", 
+                        round(`upper bound`, 2), ")")) %>% 
+    pull(icc) %>% 
+    return()
+}
+
+# Function to graphically represent all the votes, and the ICC from the
+# matrix of individual votes:
+get_grades_plot <- function(long_individual_votes, individual_votes_mat = NULL,
+                            x_min = NULL, x_max = NULL, title = "",
+                            jitter_h = .02, jitter_w = .025,
+                            jitter_alpha = .5){
+  if (is.null(x_min)){
+    x_min <- long_individual_votes %>% pull(num_grade) %>% min
+    x_min <- ifelse(x_min > 1, x_min - 1.2, x_min -.2)
+  }
+  if (is.null(x_max)){
+    x_max <- long_individual_votes %>% pull(num_grade) %>% max
+    x_max <- ifelse(x_max < 6, x_max + 1.2, x_max +.2)
+  }
+  if (!is.null(individual_votes_mat)){
+    icc <- get_icc_from_matrix(individual_votes_mat)
+    title <- paste0(ifelse(title == "", "ICC = ",
+                           paste0(title, ": ICC = ")), icc)
+  }
+  plot_data <- long_individual_votes %>% 
+    group_by(proposal) %>% 
+    mutate(avg = mean(num_grade, na.rm = TRUE)) %>% 
+    ungroup() 
+  plot_data <- plot_data %>% 
+    select(proposal, avg) %>% 
+    distinct() %>% 
+    arrange(avg) %>% 
+    mutate(order = 1:n()) %>% 
+    select(-avg) %>% 
+    left_join(plot_data, by = "proposal")
+  plot_data %>% 
+    ggplot(aes(x = num_grade, y = order)) + 
+    geom_jitter(aes(color = "Individual Votes"), height = jitter_h, 
+                width = jitter_w, alpha = jitter_alpha, size = 1) +
+    geom_point(aes(x = avg, color = "Average"), size = 1.5) + 
+    theme_minimal() +
+    scale_y_continuous(breaks = unique(plot_data$order),
+                       labels = 
+                         as.numeric(str_extract_all(unique(plot_data$proposal),
+                                                    "[0-9]+"))) +
+    labs(x = "Assessor Vote", y = "Ordered proposal", title = title) +
+    lims(x = c(x_min, x_max)) +
+    scale_color_manual(name = " ", 
+                       values = c("Average"="#FF6F6F",
+                                  "Individual Votes" = "#848383")) +
+    theme(axis.text.y = element_blank(),
+          legend.position = c(0.5, .5),
+          axis.title.y = element_blank(),
+          panel.grid.major.y = element_line(size = .1))
+}
+
+
+```
+
+
+## FYI
+
+These slides only include the Figures and data analysis for the keynote I give/gave at the ESO 2023 Workshop on "Peer Review Under Review".
+
+The complete slides are [here](https://osf.io/3r7et).
+
+
+
+
+## The STEM panel of fellowship - funding instrument
+
+```{r}
+
+nb_cois <- sum(apply(stem_mat, 1, function(x) sum(is.na(x))))
+
+stem %>% 
+  summarise("Total nb of votes" = n(),
+            "Nb proposals discussed" = n_distinct(proposal),
+            "Nb panel members" = n_distinct(assessor)) %>% 
+  mutate("Nb fundable proposals" = 6,
+         "Nb COIs" = nb_cois,  
+         "Scale used" = "A, AB, B, BC, C, D") %>% 
+  kable(booktab = TRUE) %>%
+  kable_classic_2()
+
+
+```
+
+
+## The STEM panel of fellowship - funding instrument
+```{r barplot, fig.width=7}
+plot_data <- stem %>% 
+    group_by(proposal) %>% 
+    mutate(avg = mean(num_grade, na.rm = TRUE)) %>% 
+    ungroup() %>% 
+    select(proposal, avg) %>% 
+    distinct() %>% 
+    arrange(avg) %>% 
+    mutate(order = 1:n()) %>% 
+    # select(-avg) %>% 
+    left_join(stem, by = "proposal")
+
+plot_data %>% 
+  group_by(grade) %>% 
+  summarise(count = n() ) %>% 
+  ggplot(aes(x = grade, y = count)) +
+  geom_col(fill = "#18ac7a", color = "white") +
+  labs(y = "Count", x = " ") + 
+  theme_classic()
+
+```
+
+
+## Variation within proposals 1
+
+
+```{r variation-by-proposals, fig.width=10}
+set.seed(1)
+plot_data %>% 
+  ggplot(aes(x = as.factor(order), y = num_grade)) +
+  geom_violin(fill = alpha("#18ac7a", .6), linewidth = 1, 
+              color = alpha("#18ac7a", .6)) +
+  geom_jitter(size = 1.5, height = .15, color = "#A3A3A3",
+              width = .2, alpha = .6) + 
+  # geom_point(data = plot_data %>% select(order, avg) %>% distinct(),
+             # aes(y = avg), col = "#9A1542", size = 6, pch = 13) +
+  theme_classic() + 
+  # scale_color_manual(values = c("#A3A3A3", "black")) +
+  labs(y = "Assessor Vote", x = "Ordered proposal") +
+  scale_y_continuous(breaks = 1:6,
+                     labels = c("D", "C", "BC", "B", "AB", "A"),
+                     limits = c(1, 6.2)) +
+  theme(axis.text.x = element_blank(),
+        legend.position = "none")
+```
+
+
+## Variation within proposals 2
+
+
+```{r variation-by-proposals2, fig.width=10}
+set.seed(1)
+plot_data %>% 
+  ggplot(aes(x = as.factor(order), y = num_grade)) +
+  geom_violin(fill = alpha("#18ac7a", .6), linewidth = 1, 
+              color = alpha("#18ac7a", .6)) +
+  geom_jitter(size = 1.5, height = .15, aes(color = proposal_coi), #color = "#A3A3A3",
+              width = .2, alpha = .6) + 
+  # geom_point(data = plot_data %>% select(order, avg) %>% distinct(),
+             # aes(y = avg), col = "#9A1542", size = 6, pch = 13) +
+  theme_classic() + 
+  scale_color_manual(values = c("#A3A3A3", "black")) +
+  labs(y = "Assessor Vote", x = "Ordered proposal") +
+  scale_y_continuous(breaks = 1:6,
+                     labels = c("D", "C", "BC", "B", "AB", "A"),
+                     limits = c(1, 6.2)) +
+  theme(axis.text.x = element_blank(),
+        legend.position = "none")
+```
+
+## Variation within proposals 3
+
+
+```{r variation-by-proposals3, fig.width=10}
+set.seed(1)
+plot_data %>% 
+  ggplot(aes(x = as.factor(order), y = num_grade)) +
+  geom_violin(fill = alpha("#18ac7a", .6), linewidth = 1, 
+              color = alpha("#18ac7a", .6)) +
+  geom_jitter(size = 1.5, height = .15, aes(color = proposal_coi), #color = "#A3A3A3",
+              width = .2, alpha = .6) + 
+  geom_point(data = plot_data %>% select(order, avg) %>% distinct(),
+             aes(y = avg), col = "#9A1542", size = 6, pch = 13) +
+  theme_classic() + 
+  scale_color_manual(values = c("#A3A3A3", "black")) +
+  labs(y = "Assessor Vote", x = "Ordered proposal") +
+  scale_y_continuous(breaks = 1:6,
+                     labels = c("D", "C", "BC", "B", "AB", "A"),
+                     limits = c(1, 6.2)) +
+  theme(axis.text.x = element_blank(),
+        legend.position = "none")
+```
+
+## Variation within assessors
+
+
+```{r variation-by-assessor, fig.width=10}
+set.seed(1)
+plot_data %>% 
+  ggplot(aes(x = assessor, y = num_grade)) +
+  geom_violin(fill = alpha("#18ac7a", .6), linewidth = 1, 
+              color = alpha("#18ac7a", .6)) +
+  geom_jitter(size = 1.5, height = .15, color = "#A3A3A3",
+              width = .2, alpha = .6) + 
+  theme_classic() + 
+  labs(y = "Assessor Vote", x = "Assessors") +
+  scale_y_continuous(breaks = 1:6, labels = c("D", "C", "BC", "B", "AB", "A"),
+                     limits = c(1, 6.2)) +
+  theme(axis.text.x = element_blank(),
+        legend.position = "none")
+```
+
+## Variation within assessors 2
+
+```{r variation-by-assessor2, fig.width=10}
+set.seed(1)
+plot_data %>% 
+  ggplot(aes(x = assessor, y = num_grade)) +
+  geom_violin(fill = alpha("#18ac7a", .6), linewidth = 1, 
+              color = alpha("#18ac7a", .6)) +
+  geom_jitter(size = 1.5, height = .15, aes(color = assessor_coi),
+              width = .2, alpha = .6) + 
+  theme_classic() + 
+  labs(y = "Assessor Vote", x = "Assessors") +
+  scale_color_manual(values = c("#A3A3A3", "black")) +
+  scale_y_continuous(breaks = 1:6, labels = c("D", "C", "BC", "B", "AB", "A"),
+                     limits = c(1, 6.2)) +
+  theme(axis.text.x = element_blank(),
+        legend.position = "none")
+```
+
+
+```{r useERforResearch-get-mcmc}
+if (re_sample){
+  stem_mcmc <- get_mcmc_samples(data = stem, 
+                                id_proposal = "proposal",
+                                id_assessor = "assessor", 
+                                grade_variable = "num_grade", 
+                                n_iter = 100000,
+                                n_burnin = 8000, 
+                                n_adapt = 2000,
+                                names_variables_to_sample = 
+                                  c("proposal_intercept", "tau_proposal", 
+                                    "tau_assessor", "rank_theta", 
+                                    "nu"))
+  write_rds(stem_mcmc, file = "stem_mcmc.rds")
+}
+
+stem_mcmc <- readRDS("stem_mcmc.rds")
+```
+
+
+```{r plot-results}
+
+
+plot_assessor_stem <- 
+  assessor_behavior_distribution(get_mcmc_samples_result = stem_mcmc,
+                                 names_assessors = "assessor",
+                                 n_assessors = stem %>% 
+                                   summarise(n_distinct(assessor)) %>% pull(),
+                                 xlim_min = -1.25,
+                                 xlim_max = 1.05,
+                                 scale = 2.5)
+
+plot_proposal_stem <-
+  assessor_behavior_distribution(get_mcmc_samples_result = stem_mcmc,
+                                 names_assessors = "proposal",
+                                 name_mean = "proposal_intercept",
+                                 n_assessors = stem %>%
+                                   summarise(n_distinct(proposal)) %>% pull(),
+                                 xlim_min = -1.01, xlim_max = .8,
+                                 scale = 2.5)
+
+ranks_stem <- get_er_from_jags(data = stem,
+                               id_proposal = "proposal",
+                               id_assessor = "assessor", 
+                               grade_variable = "num_grade",
+                               mcmc_samples = stem_mcmc)
+
+plot_stem <-  
+  plotting_er_results(ranks_stem, result_show = TRUE, title = "STEM",
+                      id_proposal = "id_proposal",
+                      pt_size = .5, line_size = .2, draw_funding_line = FALSE, 
+                      line_type_fl = "longdash", 
+                      color_fl = "darkgray", grep_size = 3,
+                      how_many_fundable = 6) 
+
+plot_er_dist_stem <- 
+  plot_er_distributions(get_mcmc_samples_result = stem_mcmc,
+                        n_proposals = stem %>% 
+                          summarise(n_distinct(proposal)) %>% pull(),
+                        name_er = "rank_theta", title = " ",
+                        number_fundable = 6,
+                        outer_show = FALSE, proposal = "")
+
+```
+
+## Modeling the assessor behaviour
+```{r variation-by-assessor-modeled, fig.width=5}
+plot_assessor_stem
+```
+
+
+
+## Modeling the proposal quality
+```{r variation-by-proposals-modeled, fig.width=5}
+plot_proposal_stem
+```
+
+
+## Modeling the ranking
+```{r modeled-ranks, fig.width=10}
+plot_stem
+```
+
+## Recommendation
+```{r br-recommendation, fig.width=10}
+plot_er_dist_stem
+```
+
+
+## Rankogram
+```{r}
+
+plot_rankogram <- function(data, cumulative_rank_prob = FALSE, id_proposal, id_assessor, 
+                           mcmc_samples = NULL, grade_variable = "num_grade", path_to_jags_model = NULL, 
+                           n_chains = 4, n_iter = 10000, n_burnin = 4000, n_adapt = 1000, 
+                           id_panel = NULL, max_iter = 1e+06, theta_name = "proposal_intercept", 
+                           tau_name_proposal = "tau_proposal", assessor_behavior_name = "nu", 
+                           sigma_name = "sigma", tau_name_assessor = "tau_assessor", 
+                           tau_name_panel = "tau_panel", rank_theta_name = "rank_theta", 
+                           assessor_name = "assessor_intercept", ordinal_scale = FALSE, 
+                           point_scale = NULL, heterogeneous_residuals = FALSE, seed = 1991, 
+                           quiet = FALSE, dont_bind = FALSE, inits_type = "random", 
+                           names_variables_to_sample = NULL, initial_values = NULL, 
+                           rhat_threshold = 1.01, runjags_method = "parallel") 
+{
+  n_proposal <- data %>% dplyr::pull(get(id_proposal)) %>% 
+    unique() %>% length()
+  overall_mean <- data %>% mutate(num_grade = get(grade_variable)) %>% 
+    group_by(get(id_proposal)) %>% summarise(av = mean(.data$num_grade, 
+                                                       na.rm = TRUE)) %>%
+    dplyr::pull(.data$av) %>% mean()
+  if (is.null(mcmc_samples)) {
+    mcmc_samples <- 
+      get_mcmc_samples(data = data, id_proposal = id_proposal, 
+                       id_assessor = id_assessor, grade_variable = grade_variable, 
+                       path_to_jags_model = path_to_jags_model, n_chains = n_chains, 
+                       n_iter = n_iter, n_adapt = n_adapt, n_burnin = n_burnin, 
+                       max_iter = max_iter, id_panel = id_panel, theta_name = theta_name, 
+                       rank_theta_name = rank_theta_name, assessor_name = assessor_name, 
+                       assessor_behavior_name = assessor_behavior_name, 
+                       tau_name_proposal = tau_name_proposal, tau_name_assessor = tau_name_assessor, 
+                       tau_name_panel = tau_name_panel, sigma_name = sigma_name, 
+                       ordinal_scale = ordinal_scale, point_scale = point_scale, 
+                       heterogeneous_residuals = heterogeneous_residuals, 
+                       inits_type = inits_type, initial_values = initial_values, 
+                       names_variables_to_sample = names_variables_to_sample, 
+                       seed = seed, quiet = quiet, rhat_threshold = rhat_threshold, 
+                       runjags_method = runjags_method)
+  }
+  else {
+    if (length(mcmc_samples) != 7) {
+      stop(paste0("Make sure that the object given to mcmc_samples is an ", 
+                  "object that was build with get_mcmc_samples()."))
+    }
+  }
+  colnames_rank_theta <- paste0(rank_theta_name, "[", seq_len(n_proposal), 
+                                "]")
+  if (is.list(mcmc_samples$samples)) {
+    mcmc_samples_rank_thetas <- 
+      do.call(rbind, mcmc_samples$samples$mcmc)[, colnames_rank_theta]
+  }
+  else {
+    mcmc_samples_rank_thetas <- mcmc_samples$samples[, colnames_rank_theta]
+  }
+  p_j_b <- matrix(NA, nrow = n_proposal, ncol = n_proposal)
+  for (i in seq_len(n_proposal)) {
+    for (j in seq_len(n_proposal)) {
+      p_j_b[i, j] <- mean(mcmc_samples_rank_thetas[, i] == 
+                            j)
+    }
+  }
+  sucra <- sapply(seq_len(nrow(p_j_b)), function(i) {
+    mean(cumsum(p_j_b[i, -nrow(p_j_b)]))
+  })
+  colnames(p_j_b) <- seq_len(ncol(p_j_b))
+  rownames(p_j_b) <- data %>% dplyr::pull(get(id_proposal)) %>% 
+    unique()
+  if (!cumulative_rank_prob) {
+    p_j_b %>% as_tibble(rownames = "application") %>% 
+      gather("rank", "prob", 
+             paste0(1):paste0(ncol(p_j_b))) %>%
+      mutate(rank = as.numeric(.data$rank)) %>% 
+      ggplot(aes(x = .data$rank, y = .data$prob)) +
+      geom_line() + 
+      labs(x = "Rank", y = "Probability") +
+      theme_minimal() + 
+      facet_wrap(~.data$application)
+  }
+  else {
+    sucra <- sapply(seq_len(nrow(p_j_b)), function(i) {
+      mean(cumsum(p_j_b[i, -nrow(p_j_b)]))
+    })
+    names(sucra) <- data %>% dplyr::pull(get(id_proposal)) %>% 
+      unique()
+    p_j_b %>% as_tibble(rownames = "application") %>%
+      gather("rank", "prob", paste0(1):paste0(ncol(p_j_b))) %>%
+      mutate(rank = as.numeric(.data$rank)) %>% 
+      group_by(.data$application) %>% 
+      arrange(rank) %>% 
+      # mutate(cum_prob = cumsum(.data$prob), sucra = sucra[head(.data$application, 
+      #                                                          1)]) %>%
+      ungroup() %>% ggplot(aes(x = .data$rank, 
+                               y = .data$cum_prob)) + 
+      geom_line() +
+      labs(x = "Rank", y = "Cumulative probability") + 
+      # geom_text(aes(x = n_proposal - 3, y = 0.5,
+      #               label = paste0("SUCRA: ", head(round(sucra, 2), 1))), 
+      #           size = 2) + 
+      theme_minimal() +
+      facet_wrap(~.data$application) 
+  }
+}
+
+rankogram <- 
+  plot_rankogram(data = stem,
+                 id_proposal = "proposal",
+                 id_assessor = "assessor", 
+                 grade_variable = "num_grade",
+                 rank_theta_name = "rank_theta",
+                 cumulative_rank_prob = FALSE,
+                 mcmc_samples = stem_mcmc) +
+  theme(plot.title = element_blank())
+
+
+rankogram
+```
+
