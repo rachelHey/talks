@@ -190,3 +190,121 @@ iRISE receives funding from the European Union's Horizon Europe research and inn
 knitr::include_graphics("img/count_metrics.pdf")
 ```
 
+
+## Methodological Papers | Types of Metrics
+
+- **50 reproducibility metrics** identified across **97 records**  
+\pause
+- Metrics varied in type:
+
+
+**Metric Type** | **N (%)** | **Example(s)**
+:--|--|:--
+Formula or statistical model | 37 (74%) | Significance threshold, Bayes factor, Meta-analysis, etc.
+Framework (author-defined) | 3 (6%) | Causal replication
+Graph | 3 (6%) | Bland–Altman Plot
+Study / survey / questionnaire | 4 (8%) | Prediction markets, RepliCats
+Algorithm | 3 (6%) | Various automated assessments
+---
+
+## Methodological Papers | A metric per question
+
+We linked each metric to a specific research questions:
+
+\pause
+
+- significance criterion: *do the original and replication study both find a statistically significant effect in the same direction?*
+
+\pause
+
+- prediction interval: *do the findings from the replication study align with a reasonable expectation, given the observed variation in original study?*
+
+\pause
+
+```{=latex}
+\begin{minipage}{0.35\textwidth}
+  \vspace{0.1cm}
+  \small
+  \textbf{Full paper:}\\
+  \url{https://doi.org/10.1098/rsos.242076}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\textwidth}
+  \includegraphics[width=\linewidth]{img/rsos.jpeg}
+\end{minipage}%
+```
+
+
+
+
+## Best metrics?
+
+It depends! on context, on your question, on your data, on your resources, etc...
+
+\pause 
+
+<!-- add blank line here -->
+<!-- add blank line here -->
+
+
+**Special Example**: Translation of findings from animal research to human research
+
+
+## Animal and human studies effect sizes and effect size variations differ 
+\vspace{-1.5cm}
+
+```{=latex}
+\begin{minipage}{0.25\textwidth}
+  \vspace{0.1cm}
+  \small
+  \textbf{Data from:}\\
+  \url{https://doi.org/10.3390/nu12092535}
+\end{minipage}
+\hfill
+\begin{minipage}{0.7\textwidth}
+  \includegraphics[width=\linewidth]{img/pmetaforest-1.pdf}
+\end{minipage}%
+```
+
+
+## Summary
+
+- There is no single *best* reproducibility metric *(unsurprisingly)*
+
+\pause
+
+- Each metric captures its *own aspect* of reproducibility and we linked each metric to a specific research question 
+  
+<!-- \pause -->
+
+- Metrics require different types of input data and some metrics are *costly* to implement 
+
+\pause
+
+- Ongoing work on the applicability of metrics in practice, including a simulation study to assess the real-world applicability of metrics -- *stay tuned*
+
+## Thank You!
+
+**Collaborators -- Scoping Review:**  
+Samuel Pawel, Joris Frese, Bernhard Voelkl, Hanno Würbel, Sarah McCann, Leonhard Held, Kimberley E. Wever, Helena Hartmann, Louise Townsin, Stephanie Zellers
+
+**Collaborators -- Simulation Study:**  
+Carolyne Huang, Samuel Pawel, Kimberley E. Wever, Benjamin V. Ineichen
+
+\vspace{.25cm}
+
+\hrule
+\vspace{.25cm}
+
+**Rachel Heyard**  
+
+Email: \texttt{rachel.heyard@uzh.ch}  
+Website: \url{http://rachelheyard.com/}
+
+\vspace{.25cm}
+
+\hrule
+\vspace{.25cm}
+
+Center for Reproducible Science and Research Synthesis – University of Zurich
+Website: \url{https://www.crs.uzh.ch}
