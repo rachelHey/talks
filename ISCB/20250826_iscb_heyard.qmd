@@ -2,7 +2,7 @@
 title: Quantifying reproducibility - Results from a scoping review on reproducibility metrics and simulation studies into their real-world applicability <br>
 subtitle: Conference of the International Society for Clinical Biostatistics - August 26, 2025
 author: Rachel Heyard*, Samuel Pawel, Joris Frese, Bernhard Voelkl, Hanno Würbel, Sarah McCann, Leonhard Held, Kimberley Wever, Helena Hartmann, Luise Townsin, and Stephanie Zellers
-institute: Center for Reproducible Science
+institute: Center for Reproducible Science and Research Synthesis
 preview-links: true
 format:
   beamer:
@@ -28,13 +28,10 @@ library(ERforResearch)
 library(stringr)
 library(readr)
 
-# Source needed functions
-
 opts_chunk$set(echo = FALSE, out.extra = "", warning = FALSE,
                message = FALSE, cache.lazy = FALSE)
 options(knitr.kable.NA = "---")
 
-re_sample <- FALSE
 ```
 
 
@@ -100,7 +97,7 @@ iRISE receives funding from the European Union's Horizon Europe research and inn
   Only parts of the study are reproduced (e.g., experiment, data collection, analysis), and results are compared.
   
   
-## The million-dollar question
+## The million-dollar questions
 
 
 ```{=latex}
@@ -113,25 +110,27 @@ iRISE receives funding from the European Union's Horizon Europe research and inn
 
 ## Reproducibility Metrics Scoping Review | Question
 
+\pause 
+
 **Research questions:**
 
 ```{=latex}
 \begin{itemize}
 \setlength{\itemsep}{1.5em}
-  \item \only<1>{Which metrics have been used or suggested to quantify or assess which type of reproducibility?}
-        \only<2->{\textbf{Which metrics have been used or suggested to quantify or assess which type of reproducibility?}}
-  \item \only<1>{Which ones were suggested only, or have a clear implementation?}
-        \only<2->{\textcolor{gray}{Which ones were suggested only, or have a clear implementation?}}
-  \item \only<1>{How can they be interpreted and in which situations are they useful?}
-        \only<2->{\textcolor{gray}{How can they be interpreted and in which situations are they useful?}}
-  \item \only<1>{What are assumptions and limitations?}
-        \only<2->{\textcolor{gray}{What are assumptions and limitations?}}
+  \item \only<2>{Which metrics have been used or suggested to quantify or assess which type of reproducibility?}
+        \only<3->{\textbf{Which metrics have been used or suggested to quantify or assess which type of reproducibility?}}
+  \item \only<2>{Which ones were suggested only, or have a clear implementation?}
+        \only<3->{\textcolor{gray}{Which ones were suggested only, or have a clear implementation?}}
+  \item \only<2>{How can they be interpreted and in which situations are they useful?}
+        \only<3->{\textcolor{gray}{How can they be interpreted and in which situations are they useful?}}
+  \item \only<2>{What are assumptions and limitations?}
+        \only<3->{\textcolor{gray}{What are assumptions and limitations?}}
 \end{itemize}
 ```
 
 ## Reproducibility Metrics Scoping Review | Methods
 
-**Scoping Review in Two Parts**
+**Scoping Review in two parts**
 
 * \underline{Application papers} -- For reproducibility metrics **used in practice**, a list of large-scale reproducibility projects was compiled by the project team.
   
@@ -149,29 +148,40 @@ iRISE receives funding from the European Union's Horizon Europe research and inn
 
 ## Application papers
 
+\pause 
+
 - **49 records** of reproducibility projects across fields of research (based on OpenAlex):
   - Health and life sciences -- 10 (20.4%)
   - Physical sciences -- 6 (12.2%)
   - Social sciences -- 33 (67.3%)
 
-<!-- add blank line here -->
-<!-- add blank line here -->
 
-- Categorised into three project types: 
-  1. **Many phenomena, one study**: many original hypotheses tested, each hypothesis once;
-  2. **One phenomenon, many studies**:one hypothesis is tested by many different teams;
-  3. **Many phenomena, many studies**: many hypotheses are tested, each multiple times
+<!-- \pause -->
+
+<!-- - Categorised into three project types:  -->
+<!--   1. **Many phenomena, one study**: many original hypotheses tested, each hypothesis once; -->
+<!--   2. **One phenomenon, many studies**: one hypothesis is tested by many different teams; -->
+<!--   3. **Many phenomena, many studies**: many hypotheses are tested, each multiple times -->
 
 
 ## Metrics used in application papers
-- Various metrics were used to assess reproducibility:
+
+Various metrics were used to assess reproducibility:
+
+\pause
+
   - Some compared **statistical significance**
+  \pause
+  
   - Others compared **effect sizes**
+  \pause
+  
   - Some used **meta-analyses**
+  \pause
   - Others relied on **subjective assessments**
   - *some used others*
 
-
+\pause
 
 <!-- **Frequency of metric types in application papers:** -->
 
@@ -193,14 +203,14 @@ knitr::include_graphics("img/count_metrics.pdf")
 
 ## Methodological Papers | Types of Metrics
 
-- **50 reproducibility metrics** identified across **97 records**  
+- **50 reproducibility metrics** identified across **97 records**.  
 \pause
-- Metrics varied in type:
+- Metrics varied by type:
 
 
 **Metric Type** | **N (%)** | **Example(s)**
 :--|--|:--
-Formula or statistical model | 37 (74%) | Significance threshold, Bayes factor, Meta-analysis, etc.
+Formula or statistical model | 37 (74%) | Significance criterion, Bayes factor, Meta-analysis
 Framework (author-defined) | 3 (6%) | Causal replication
 Graph | 3 (6%) | Bland–Altman Plot
 Study / survey / questionnaire | 4 (8%) | Prediction markets, RepliCats
@@ -244,10 +254,11 @@ It depends! on context, on your question, on your data, on your resources, etc..
 \pause 
 
 <!-- add blank line here -->
+
 <!-- add blank line here -->
 
 
-**Special Example**: Translation of findings from animal research to human research
+**Special Case**: Translation of findings from animal models to clinical trials
 
 
 ## Animal and human studies effect sizes and effect size variations differ 
