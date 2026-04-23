@@ -241,6 +241,52 @@ Note:
   
 
 
+## More statistics on the "effect" of gender
+
+
+At SNSF, we had some anecdotal evidence that women "write differently". 
+
+\pause
+
+Data team initiated a new project!
+
+\pause
+$\Rightarrow$ To investigate whether the use of positive, self-promotional language in grant proposals is associated with the gender of the applicant. 
+
+## Positive, self-promotional language
+
+::: {.callout-note} 
+# Words selected [Life science focus]
+
+amazing, assuring, astonishing, bright, creative, encouraging, enormous, excellent, favorable/favourable, groundbreaking, hopeful, innovative, inspiring, inventive, novel, phenomenal, prominent, promising, reassuring, remarkable, robust, spectacular, supportive, unique, and unprecedented.
+
+<br> 
+
+\footnotesize Source: [10.1136/bmj.h6467](https://doi.org/10.1136/bmj.h6467)
+:::
+
+\pause
+
+::: {.callout-note} 
+# Proposed analysis
+
+Multivariate, logistic, and negative binomial regressions were used to model the count and binary presence of positive words in grant proposal titles and abstracts. 
+
+:::
+
+
+## Descriptives: positive word counts per gender
+
+![](img/nb_pos_words.png){height=230px, fig-align="center"} 
+<!-- \footnotesize \url{https://data.snf.ch/stories/women-submitting-fewer-grant-proposals-en.html} -->
+
+
+## Results: estimated positive word counts per gender
+
+![](img/estimated_number_of_poswords.png){height=200px, fig-align="center"} 
+
+\footnotesize Adjusted for: Age (proxy for career stage) and institution type (proxy for prestige); and text length
+
 ## Research funding decisions
 
 Focus on **competitive funding** by national and international scientific funding organisations 
