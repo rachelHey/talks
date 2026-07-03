@@ -840,7 +840,7 @@ Website: \url{https://www.crs.uzh.ch}
 ![](img/by.png){height=100px}  
 This presentation is licensed with a CC-BY international license 4.0 https://creativecommons.org/licenses/by/4.0/
 
-Available from github: [rachelhey.github.io/talks/SORTEE_webinar](rachelhey.github.io/talks/SORTEE_webinar).
+Available from github: \url{https://github.com/rachelHey/talks/tree/main/SORTEE_webinar}.
 
 Please cite as: R Heyard "Lotteries and innovations in research funding allocation", SORTEE webinar, 2026 [osf.io/ujdah](https://osf.io/ujdah).
 

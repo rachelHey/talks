@@ -282,10 +282,16 @@ Multivariate, logistic, and negative binomial regressions were used to model the
 
 
 ## Results: estimated positive word counts per gender
-
+\vspace{-.4cm}
 ![](img/estimated_number_of_poswords.png){height=200px, fig-align="center"} 
 
 \footnotesize Adjusted for: Age (proxy for career stage) and institution type (proxy for prestige); and text length
+
+## More on this
+
+![](img/heyard_posword.png){height=200px, fig-align="center"} 
+
+\footnotesize \url{https://doi.org/10.1093/reseval/rvaf002}
 
 ## Research funding decisions
 
