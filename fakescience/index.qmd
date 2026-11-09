@@ -516,9 +516,14 @@ Most of what we heard in this series is **after the fact**: image forensics, dat
 <br>
 
 <div class="people">
-<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/arojasmora/photo/EBPI_Port_alfonso_rojas_mora2026_03_12_6825_39kb.jpg.jpg" alt="Alfonso Rojas Mora"><div><b>Alfonso Rojas Mora</b><br><span>CRS, University of Zurich</span></div></div>
-<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/hwnfriedramirez/photo/EBPI_Port_wnfried_hillary_2026_07_07_7221_16kb.jpg.jpg" alt="Hillary Wnfried Ramirez"><div><b>Hillary Wnfried Ramirez</b><br><span>CRS, University of Zurich</span></div></div>
+<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/arojasmora/photo/EBPI_Port_alfonso_rojas_mora2026_03_12_6825_39kb.jpg.jpg" alt="Alfonso Rojas Mora"><div><b>Alfonso Rojas Mora</b><br></div></div>
+<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/hwnfriedramirez/photo/EBPI_Port_wnfried_hillary_2026_07_07_7221_16kb.jpg.jpg" alt="Hillary Wnfried Ramirez"><div><b>Hillary Wnfried Ramirez</b><br></div></div>
+<div class="person"><img src="https://www.crs.uzh.ch/contacts/crs/team/pdegen/photo/peter_degen_pic.jpg.jpg" alt="Peter Degen"><div><b>Peter Degen</b><br></div></div>
+<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/uheld/photo/EBPI_Port_held_ulrike_2025_10_23_6445_40kb.jpg.jpg"><div><b>Ulrike Held</b><br></div></div>
+<div class="person"><img src="https://www.crs.uzh.ch/contacts/crs/team/lheld/photo/held_leonard.jpg.jpg" alt="Leonhard Held"><div><b>Leonhard Held</b><br></div></div>
 </div>
+
+
 
 
 ## INSPECT -- early warning signs in clinical trial protocols {.dense}
@@ -539,10 +544,10 @@ QRPs => whole spectrum from honest error to fraud
 
 . . .
 
-For example:  
-  - Low author-to-study size ratio (related to plausibility / feasibility)    
-  - Compromised study team integrity  
-  - Outcome switching  
+Examples:  
+  - [Low author-to-study size ratio]{.g} (related to plausibility / feasibility)    
+  - [Compromised study team integrity]{.g}  
+  - [Outcome switching]{.g}  
  
 
 . . .
@@ -552,8 +557,8 @@ For example:
 --> **Next**: feasibility study to understand applicability of trustworthiness checks during protocol review
 
 Examples:  
--  Do other studies by the research team highlight causes for concern?  
-- Are secondary outcomes numerous, unordered, or not distinguished from exploratory outcomes?
+- [Do other studies by the research team highlight causes for concern?]{.g}  
+- [Are secondary outcomes numerous, unordered, or not distinguished from exploratory outcomes?]{.g}
 
 
 
@@ -691,7 +696,7 @@ Reforms change the incentive structure — so they can have unintended consequen
 
 ## Take-home
 
-1. **The premise largely holds** -- promotion, funding and our own beliefs all reward the publication count  
+1. **The premise largely holds** -- promotion, funding and our own beliefs all reward publication counts etc
 
 2. **It's complicated** -- no researcher, university or funder can leave it alone  
 
