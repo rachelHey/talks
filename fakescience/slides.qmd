@@ -1,0 +1,717 @@
+---
+pagetitle: "Studying the Research System -- Heyard"
+format:
+  revealjs:
+    theme: [default, crs.scss]
+    width: 1280
+    height: 720
+    margin: 0.06
+    slide-number: c/t
+    show-slide-number: all
+    hash-type: number
+    transition: none
+    preview-links: false
+    navigation-mode: linear
+    menu: true
+    chalkboard: false
+    pdf-separate-fragments: false
+lang: en
+---
+
+## {.no-logo}
+
+![](img/keynote/uzh-logo.png){.title-logo-uzh}
+![](img/keynote/crs-logo.png){.title-logo-crs}
+![](img/keynote/target.png){.title-target}
+
+<div class="title-block">
+<h1 class="title-main">Studying the Research System</h1>
+<br>
+<div class="title-sub">Metaresearch, Incentives, and Research Assessment Reform</div>
+
+<div class="title-author"><b>Rachel Heyard</b> · Center for Reproducible Science and Research Synthesis (CRS), University of Zurich</div>
+<br>
+<div class="title-event muted">Ringvorlesung <i>Fake Science: Isolated Cases or a Systemic Problem?</i> · 10 November 2026</div>
+</div>
+
+
+## Some personal [disclosures]{.g}
+
+- Senior researcher at CRS, UZH
+- Open and reproducible science enthusiast 
+
+<br>
+
+
+Relevant experience, for the purpose of this talk
+
+- Worked in the data team of the [Swiss National Science Foundation]{.g} (SNSF)
+- Steering committee member of [CoARA]{.g} working group on "Responsible Metrics and Indicators"
+- Lead the [SwissRN]{.g} working group on "Research Assessment and Incentives"
+
+<!-- dora-logo.png contains the CoARA logo (filenames are swapped) -->
+<div class="logo-row">
+<img src="img/keynote/dora-logo.png" alt="CoARA">
+<img src="img/swissrn-logo.png" alt="SwissRN">
+</div>
+
+## Central premise of today: [it's the incentives]{.g}
+
+<br>
+
+<div class="flow" style="margin-top:1.2em; font-size:1.3em;">
+<div class="node fragment" data-fragment-index="1"><b>Incentive structure</b><br>Strong focus on papers, impact factor, grants, ...</div>
+<div class="arr fragment" data-fragment-index="2">→</div>
+<div class="node fragment" data-fragment-index="2"><b>Behaviour</b><br>Questionable research practices </div>
+<div class="arr fragment" data-fragment-index="3">→</div>
+<div class="node fragment" data-fragment-index="3"><b>Outcome</b><br>Unreliable &amp; fake science</div>
+</div> 
+
+
+::: notes
+This is the premise of the whole lecture series, and of a lot of the integrity literature: individual misconduct is a symptom; the cause is the incentive structure.
+Today: (1) What does that structure actually reward? (2) Why is it so hard to get out of? (3) What can we design differently — and where do current reforms come from?
+:::
+
+
+##  Metaresearch <br> [Studying the research system]{.g} with the tools of science
+
+::: {.fragment fragment-index=1}
+*Five areas of meta-research*:
+:::
+
+
+<div class="cards" style="--n:1; gap:.8em;">
+<div class="card fragment" data-fragment-index="2">**Methods** -- how we do research</div>
+<div class="card fragment" data-fragment-index="3">**Reporting** -- how we communicate it</div>
+<div class="card fragment" data-fragment-index="4">**Reproducibility** -- how we verify it</div>
+<div class="card fragment" data-fragment-index="5">**Evaluation** -- how we assess it</div>
+<div class="card hl fragment" data-fragment-index="6">**Incentives** -- how we reward it</div>
+</div>
+
+::: {.ref}
+Ioannidis, Fanelli, Dunne & Goodman (2015) PLoS Biol — [10.1371/journal.pbio.1002264](https://doi.org/10.1371/journal.pbio.1002264)
+:::
+
+::: notes
+Incentives are literally one of the five pillars of the field. Evaluation and incentives are the two that funders and institutions control directly.
+:::
+
+
+# What does the system reward? {.section-slide background-color="#EFEFEF"}
+
+[Part 1]{.kicker}
+
+## Institutions
+
+ **[Promotion criteria]{.g} **
+
+
+. . . 
+
+Review of promotion & tenure guidelines of 92 faculties of biomedical science. 
+
+[What did the guidelines mention as criteria?]{.g}
+
+<br>
+
+. . .
+
+
+<div class="stats" style="--n:3; margin-top:0.6em;">
+<div class="stat"><div class="num">95%</div><div class="lab">peer-reviewed publications</div></div>
+<div class="stat"><div class="num">67%</div><div class="lab">grant funding</div></div>
+<div class="stat"><div class="num">28%</div><div class="lab">journal impact factor</div></div>
+<div class="stat low"><div class="num">1%</div><div class="lab">data sharing</div></div>
+<div class="stat low"><div class="num">0%</div><div class="lab">open access · study registration · reporting guidelines</div></div>
+<div class="stat low"><div class="num">3%</div><div class="lab">alternative metrics for sharing research (e.g. social media)</div></div>
+</div>
+
+[*Note:* paper published in 2020; the paper does not say *when* the guidelines were retrieved.]{.small .muted}
+
+::: {.ref}
+Rice, Raffoul, Ioannidis & Moher (2020) BMJ — [10.1136/bmj.m2081](https://doi.org/10.1136/bmj.m2081). See also McKiernan et al. (2019) eLife on the JIF in promotion documents.
+:::
+
+::: notes
+This is the formal incentive structure, written down. Almost every institution counts peer-reviewed publications; many require a minimum number per year. Data sharing, registration, reporting guidelines: essentially absent.
+[Optional: a Swiss/UZH example of promotion criteria.]
+:::
+
+
+<!-- ## Institutions: the [impact factor]{.g} in promotion documents -->
+
+<!-- <p class="small muted" style="margin-top:-0.4em;">Review, promotion & tenure (RPT) documents, representative sample of US & Canadian universities</p> -->
+
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="34%"} -->
+<!-- **Mention the JIF** -->
+
+<!-- <div class="stats" style="--n:1; gap:0.4em;"> -->
+<!-- <div class="stat"><div class="num">40%</div><div class="lab">of research-intensive institutions</div></div> -->
+<!-- <div class="stat"><div class="num">18%</div><div class="lab">of master's institutions</div></div> -->
+<!-- </div> -->
+<!-- ::: -->
+<!-- ::: {.column width="66%"} -->
+<!-- **Of those that mention it…** -->
+
+<!-- <div class="stats" style="--n:3; gap:0.4em;"> -->
+<!-- <div class="stat"><div class="num">87%</div><div class="lab">support its use</div></div> -->
+<!-- <div class="stat low"><div class="num">13%</div><div class="lab">express caution</div></div> -->
+<!-- <div class="stat low"><div class="num">0%</div><div class="lab">criticise or prohibit it</div></div> -->
+<!-- </div> -->
+
+<!-- <p style="margin:0.7em 0 0.2em 0;"><b>…and link it to</b></p> -->
+
+<!-- <div class="stats" style="--n:3; gap:0.4em;"> -->
+<!-- <div class="stat good"><div class="num">63%</div><div class="lab">quality</div></div> -->
+<!-- <div class="stat"><div class="num">40%</div><div class="lab">impact, importance, significance</div></div> -->
+<!-- <div class="stat"><div class="num">20%</div><div class="lab">prestige, reputation, status</div></div> -->
+<!-- </div> -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- <p class="gd" style="margin-top:0.7em;">The JIF is encouraged — and read as a measure of quality — especially at research-intensive universities.</p> -->
+
+<!-- ::: {.ref} -->
+<!-- McKiernan, Schimanski, Muñoz Nieves, Matthias, Niles & Alperin (2019) eLife — [10.7554/eLife.47338](https://doi.org/10.7554/eLife.47338) -->
+<!-- ::: -->
+
+<!-- ::: notes -->
+<!-- Complements Rice et al.: not only are publications counted, the journal they appear in is taken as a proxy for quality, and almost nobody warns against it. Contrast with the evidence that the JIF does not predict article quality (backup slide). -->
+<!-- ::: -->
+
+## Funders
+
+What they **[say]{.g} _vs._** what researchers are asked to **[report]{.g}**
+
+:::: {.columns}
+::: {.column width="40%"}
+<br>
+
+<div class="tree">
+<div class="card sm fragment" data-fragment-index="1"><b>What the funder says it values</b>Open science, reproducibility, data sharing as a safeguard against misconduct.
+SNSF expects data underlying publications to be shared.</div>
+<div class="down fragment" data-fragment-index="2">↓</div>
+<div class="card sm fragment" data-fragment-index="2"><b>What the reporting system asks for</b>An output list built around publications, filled in ~6 months after the project ends. Software, teaching material, theses, preprints: hard or impossible to report.</div>
+<div class="down fragment" data-fragment-index="3">↓</div>
+<div class="card sm hl fragment" data-fragment-index="3"><b>What we see reported</b>≈ 10 publications per dataset (Projects, 2022). Only 20–33% of Projects grants report any dataset.</div>
+</div>
+:::
+::: {.column width="60%"}
+::: {.fragment fragment-index=3}
+![](img/snsf-outputs-per-grant-2022.png){width="92%"}
+
+<p class="tiny muted">Average number of outputs per SNSF grant completed in 2022, by scheme and output type.</p>
+:::
+:::
+::::
+
+::: {.ref}
+Heyard, Furrer, Held, Würbel, Vergauwe & Ochsner (2024) SwissRN policy brief — [osf.io/zdnpm](https://osf.io/zdnpm/files/vgs4b) · data: [data.snf.ch](https://data.snf.ch/datasets)
+:::
+
+## Funders
+
+The **[high stakes]{.g}** of the **funding game**
+
+<br>
+
+<!-- the previous is especially problematic because of the "funding game" -->
+![](img/keynote/rejection-letter.png){.shadow width="100%"}
+
+## Funders
+
+The **[high costs]{.g}** of the **funding game**
+
+. . .
+
+:::: {.columns}
+::: {.column width="50%"}
+
+<br>
+
+Observational / survey study on 3,727 proposals to one funding round (March 2021) of the National Health and Medical Research Council of Australia.
+:::
+
+
+::: {.column width="50%"}
+**Results **
+<div class="stats" style="--n:1; gap:0.5em;">
+<div class="stat"><div class="num">34</div><div class="lab">working days per proposal (38 new · 28 resubmitted)</div></div>
+<div class="stat"><div class="num">550</div><div class="lab">researcher-years for one funding round</div></div>
+<div class="stat"><div class="num">AU$ 66 M</div><div class="lab">in salary costs</div></div>
+</div>
+:::
+::::
+
+::: {.ref}
+Herbert, Barnett, Clarke & Graves (2013) BMJ Open — [10.1136/bmjopen-2013-002800](https://doi.org/10.1136/bmjopen-2013-002800)
+:::
+
+::: notes
+Herbert: new proposal 38 working days, resubmission 28, average 34. 550 working years for 3,727 proposals, AU$66 million in salary costs.
+:::
+
+## Funders
+
+A **[partly random]{.g}** **funding game**
+
+
+:::: {.columns}
+::: {.column width="70%"}
+![](img/keynote/graves2011-rank-ci.png){width="100%"}
+:::
+::: {.column width="30%"}
+
+
+- 90% confidence intervals for proposal ranks after evaluation 
+
+- Some proposals **always** funded, some **never**; and a large group **sometimes funded**
+- At the funding line, the decision is partly [**chance**]{.g}
+:::
+::::
+
+::: {.ref}
+Graves, Barnett & Clarke (2011) BMJ — [10.1136/bmj.d4797](https://doi.org/10.1136/bmj.d4797) 
+:::
+
+
+## A circle that is [hard to get out of]{.g}
+<br>
+<br>
+
+<div class="circle">
+<div class="box hl fragment" data-fragment-index="1"><b>Institutions &amp; funders</b>count papers, grants, JIF</div>
+<div class="arrow fragment" data-fragment-index="2">→</div>
+<div class="box fragment" data-fragment-index="2"><b>Researchers believe</b>only papers count</div>
+<div class="arrow fragment" data-fragment-index="5">↑</div>
+<div class="spacer">&nbsp;</div>
+<div class="arrow fragment" data-fragment-index="3">↓</div>
+<div class="box fragment" data-fragment-index="4"><b>The bar moves up</b>longer CVs become the norm for "competitive"</div>
+<div class="arrow fragment" data-fragment-index="4">←</div>
+<div class="box fragment" data-fragment-index="3"><b>Researchers publish</b>more, faster, "positive" -- questionable research practices</div>
+</div>
+
+<!-- ::: {.column width="42%"} -->
+<!-- ::: {.fragment fragment-index=6} -->
+<!-- **Why it is hard to leave** -->
+
+<!-- - **First-mover problem**: the researcher, university or funder who stops counting papers alone pays the price -->
+<!-- - Evaluators need **cheap signals at scale** — counting is cheap -->
+<!-- - Today's evaluators were **selected by the old currency** -->
+<!-- - **Perception lags** behind policy change -->
+<!-- ::: -->
+<!-- ::: -->
+
+::: notes
+Key slide of part 1. Everyone in the loop behaves rationally given what they believe the others reward. Nobody can exit alone. That's why individual appeals ("just do good science") don't work, and why coordinated action (later: DORA, CoARA) matters.
+:::
+
+
+# Breaking the circle by design {.section-slide background-color="#EFEFEF"}
+
+[Part 2 — how metaresearch can inform solutions]{.kicker}
+
+## Incentives are designed -- [one call at a time]{.g}
+
+. . .
+
+<p style="margin-top:-0.2em;"><b>Funder degrees of freedom</b> influence what gets rewarded, how, and who gets funded.</p>
+
+<br>
+
+. . .
+
+<div class="cards md" style="--n:3; margin-top:0.4em;">
+<div class="card hl"><b>Objectives & eligibility</b>who can apply, career stage, topic, ...</div>
+<div class="card hl"><b>Application format</b>CV type, DMP, project plan, ...</div>
+<div class="card hl"><b>Evaluation criteria</b>what counts: pubs, rigor, openness, ...</div>
+<div class="card hl"><b>Reviewers & panels</b>who, how many, composition, training</div>
+<div class="card hl"><b>Scoring & decision rule</b>scales, aggregation, ranking, lottery</div>
+<div class="card hl"><b>Checks & reporting</b>integrity checks, output lists, monitoring</div>
+</div>
+
+
+<p class="small muted" style="margin-top:0.8em;">Each choice signals what "good research" is -- and each is a lever against bad & fake science.</p>
+
+. . . 
+
+<!-- I would therefore argue that  -->
+
+<p class="statement" style="font-size:1em; margin-top:1em;">Incentives can be <span class="g">redesigned</span>.</p>
+
+
+
+## Mapping funders' decision-making processes {.dense}
+
+<div class="people">
+<div class="person"><img src="https://www.crs.uzh.ch/contacts/crs/team/gyinchingchan/photo/Gabrielle%20Chan.jpg.jpg" alt="Gabrielle Chan"><div><b>Gabrielle Chan</b><br><span>CRS, University of Zurich</span></div></div>
+<div class="person"><img src="https://excelscior.uc.pt/wp-content/uploads/2025/09/Thomas-Feliciani_edited.jpg" alt="Thomas Feliciani"><div><b>Thomas Feliciani</b><br><span>University of Coimbra</span></div></div>
+</div>
+
+. . .
+
+**Decision-making processes for research funding -- a review**
+
+- Funders choose call objectives, eligibility, criteria, panel set-up.. 
+
+- _But_ there is **no comprehensive map** of these choices & no evidence-based tools to choose 
+
+. . . 
+
+- **Aim:** an open, expandable, scalable mapping of the design aspects of funding calls
+
+<br>
+
+. . .
+
+--> Halfway in the project: Funders are not very transparent about their design choices.
+
+::: {.ref}
+Heyard, Chan & Feliciani (2026) Zenodo — [10.5281/zenodo.19133106](https://doi.org/10.5281/zenodo.19133106) 
+:::
+
+
+
+## One choice / lever: Final funding [decision]{.g}
+
+. . . 
+
+![](img/keynote/grey-area-ranking.png){width="75%"}
+<p class="small">Average-based ranking often not very useful to differentiate proposals in the middle.</p>
+
+## One choice / lever: Funding [lotteries]{.g}
+![](img/keynote/snsf-bayesian-ranking.png){width="40%"}
+
+<!-- At SNSF: Bayesian ranking → fund the clearly strong, reject the clearly weak, [draw lots among the indistinguishable]{.g} -->
+
+::: {.ref}
+Heyard, Ott, Salanti & Egger (2022) Stat Public Policy — [10.1080/2330443X.2022.2086190](https://doi.org/10.1080/2330443X.2022.2086190) · R package: [ERforResearch](https://github.com/snsf-data/ERforResearch)
+:::
+
+::: notes
+Keynote slides 29–30. Link to the circle: if the margin is a lottery anyway (Graves), making it explicit removes the illusion that one more paper buys the decision, reduces bias, and is transparent. A direct consequence of research on research.
+:::
+
+## Funding lotteries: [why]{.g}?
+
+. . .
+
+<br>
+
+![](img/keynote/shaw2022-motivations.png){width="60%"}
+
+::: {.ref}
+Shaw (2022) Res Eval — [10.1093/reseval/rvac022](https://doi.org/10.1093/reseval/rvac022)
+:::
+
+## Funding lotteries: [what do they do]{.g}?
+
+<br>
+
+:::: {.columns}
+::: {.column width="55%"}
+<br>
+![](img/keynote/luebber2025-lottery-natcomms.png){.shadow width="100%"}
+
+:::
+::: {.column width="45%"}
+<br>
+
+First evidence:
+
+- Lottery **before** peer review
+- Associated with **more women** among those funded,
+- And a **lower estimated economic cost**
+
+::: {.fragment}
+<p class="gd" style="margin-top:0.8em;">But what does winning -- or losing -- the draw do to a career?</p>
+:::
+:::
+::::
+
+::: {.ref}
+Lübber et al. (2025) Nat Commun --  [10.1038/s41467-025-65660-9](https://doi.org/10.1038/s41467-025-65660-9)
+:::
+
+::: notes
+Keynote slides 35–36. Still very little causal evidence on what lotteries do to the people who win or lose the draw → our study (next slide).
+:::
+
+## Lottery funding & academic careers -- a randomized natural experiment {.dense}
+
+<div class="people">
+<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/hwnfriedramirez/photo/EBPI_Port_wnfried_hillary_2026_07_07_7221_16kb.jpg.jpg" alt="Hillary Wnfried Ramirez"><div><b>Hillary Wnfried Ramirez</b><br><span>CRS, University of Zurich</span></div></div>
+<div class="person"><img src="https://www.soz.unibe.ch/unibe/portal/fak_wiso/c_dep_sowi/inst_soz/content/e39893/e48983/e117898/Jann-300x332_ger.jpg" alt="Ben Jann"><div><b>Ben Jann</b><br><span>University of Bern</span></div></div>
+<div class="person"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQye2qZ1F6VgZpqHzGxfhxpBAW0CovwPKwwXkEji230jg&s=10" alt="Dominic Rohner"><div><b>Dominic Rohner</b><br><span>University of Lausanne</span></div></div>
+<div class="person"><img src="https://www.crs.uzh.ch/contacts/crs/team/lheld/photo/held_leonard.jpg.jpg" alt="Leonhard Held"><div><b>Leonhard Held</b><br><span>CRS, University of Zurich</span></div></div>
+<div class="person"><img src="https://www.ispm.unibe.ch/unibe/portal/fak_medizin/ber_vkhum/inst_smp/content/e93993/e94002/e1670386/EggerMatthias_1016_413px_eng.jpg" alt="Matthias Egger"><div><b>Matthias Egger</b><br><span>CRS, University of Zurich</span></div></div>
+</div>
+
+<br>
+
+. . . 
+
+:::: {.columns}
+::: {.column width="52%"}
+- SNSF modified lottery 2019--2023:
+  - 267 Project Funding · 230 Fellowships
+- Random draw among equally rated proposals → **causal** effect of funding
+- Primary outcomes: field-normalised citations, publications, **career retention**
+- Stage 1 **Registered Report** submitted
+:::
+::: {.column width="48%"}
+<div class="tree" style="font-size:1.3em;">
+<div class="flow"><div class="node">Proposals evaluated</div></div>
+<div class="down">↓</div>
+<div class="flow"><div class="node dim">Clearly fund</div><div class="node hl"><b>Indistinguishable</b><br> lottery (n = 497)</div><div class="node dim">Clearly reject</div></div>
+<div class="down">↓</div>
+<div class="flow"><div class="node">Won the draw<br><b>funded</b></div><div class="arr">vs</div><div class="node">Lost the draw<br><b>not funded</b></div></div>
+<div class="down">↓</div>
+<div class="flow"><div class="node hl">Compare: citations · output · career retention</div></div>
+</div>
+:::
+::::
+
+::: {.ref}
+Heyard, Ramirez, Jann, Rohner, Held & Egger (2026) preprint — [10.5281/zenodo.23189200](https://doi.org/10.5281/zenodo.23189200)
+:::
+
+::: notes
+Why this matters for the incentive debate: it tells us how much is really at stake at the margin — the causal "value" of a grant (cf. Bol et al.: >2× later funding). If the effect is large, near-random margins are a fairness problem; if small, the perceived stakes exceed the real ones — and the circle is partly running on beliefs.
+Practising what we preach: Registered Report, SPIRIT checklist, pre-specified analysis, opt-out for applicants.
+:::
+
+## Another possible choice or lever
+
+**[Integrity checks at the gate]{.g}**
+
+. . . 
+
+
+<br>
+
+Most of what we heard in this series is **after the fact**: image forensics, data sleuthing, retractions.
+
+<!-- <br> -->
+
+. . .
+
+**What if funders could spot red flags *before* the money flows?**
+<!-- <br> -->
+
+. . .
+
+<div class="pipe" style="margin-top:1em; font-size:1.25em;">
+<div class="node hl"><b>Plan</b><br>protocol · SAP</div><div class="arr">→</div>
+<div class="node">Fund</div><div class="arr">→</div>
+<div class="node">Conduct</div><div class="arr">→</div>
+<div class="node">Publish</div><div class="arr">→</div>
+<div class="node dim"><b>Detect</b><br>&amp; retract</div>
+<div class="lab gd">↑ INSPECT (**I**dentifying **N**on-obvious **S**ignals in **P**rotocols for **E**arly **C**redibility **T**hreats)</div>
+<div class="lab right muted">most forensic work today ↑</div>
+</div>
+
+<br>
+
+<div class="people">
+<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/arojasmora/photo/EBPI_Port_alfonso_rojas_mora2026_03_12_6825_39kb.jpg.jpg" alt="Alfonso Rojas Mora"><div><b>Alfonso Rojas Mora</b><br><span>CRS, University of Zurich</span></div></div>
+<div class="person"><img src="https://www.ebpi.uzh.ch/contacts/ebpi/hwnfriedramirez/photo/EBPI_Port_wnfried_hillary_2026_07_07_7221_16kb.jpg.jpg" alt="Hillary Wnfried Ramirez"><div><b>Hillary Wnfried Ramirez</b><br><span>CRS, University of Zurich</span></div></div>
+</div>
+
+
+## INSPECT -- early warning signs in clinical trial protocols {.dense}
+
+<br>
+
+QRPs => whole spectrum from honest error to fraud
+
+. . .
+
+
+- **Aim**: understand which QRPs could, in theory, be detected in planning documents (and how)
+- **Rapid review** and **Expert consultation**  
+
+. . .
+
+--> We identified **67** QRPs for which red flags could potentially be detected in trial protocols  
+
+. . .
+
+For example:  
+  - Low author-to-study size ratio (related to plausibility / feasibility)    
+  - Compromised study team integrity  
+  - Outcome switching  
+ 
+
+. . .
+
+<!-- <br>  -->
+
+--> **Next**: feasibility study to understand applicability of trustworthiness checks during protocol review
+
+Examples:  
+-  Do other studies by the research team highlight causes for concern?  
+- Are secondary outcomes numerous, unordered, or not distinguished from exploratory outcomes?
+
+
+
+::: {.ref}
+[crsuzh.pages.uzh.ch/inspect](https://crsuzh.pages.uzh.ch/inspect/) · Rojas Mora, A., Wnfried Ramirez, H., Degen, P. M., Held, U., Held, L., & Heyard, R. (2026) [https://doi.org/10.31222/osf.io/d5hsu_v1](https://doi.org/10.31222/osf.io/d5hsu_v1)
+:::
+
+# Research assessment reform {.section-slide background-color="#EFEFEF"}
+
+[Part 3 — where are we, and how did we get here?]{.kicker}
+
+## A decade of [reform]{.g}
+
+
+<div class="tl">
+<div class="yr">2012/13</div><div class="yr">2015</div><div class="yr">2019</div><div class="yr">2021</div><div class="yr">2022</div><div class="yr">2023 →</div>
+<div class="line"></div>
+<div class="ev"><b>DORA</b>drafted at meeting in San Francisco: stop using the JIF to assess individuals</div>
+<div class="ev"><b>Leiden Manifesto</b>responsible use of metrics</div>
+<div class="ev"><b>Hong Kong Principles</b>6th WCRI: reward integrity · NL: "Room for everyone's talent"</div>
+<div class="ev"><b>UNESCO</b>Recommendation on Open Science</div>
+<div class="ev hl"><b>CoARA</b>Agreement co-created by 350+ organisations from 40 countries; coalition launched 1.12.2022</div>
+<div class="ev"><b>Since</b>national chapters, working groups, action plans</div>
+
+</div>
+
+::: {.ref}
+[sfdora.org](https://sfdora.org) · Hicks et al. (2015) Nature 520:429 · Wilsdon et al. (2015) *The Metric Tide* · Moher et al. (2020) PLoS Biol [10.1371/journal.pbio.3000737](https://doi.org/10.1371/journal.pbio.3000737) · [coara.eu](https://coara.eu) 
+:::
+
+
+
+## How did these reforms [come about]{.g}?
+
+
+<div class="why">
+<div class="c"><b>1 · Evidence</b>Metaresearch showed the problems: JIF does not predict quality; reproducibility crisis; bias in peer review; random outcomes at the funding line</div>
+<div class="c"><b>2 · Communities</b>Researchers organised bottom-up: reproducibility networks (SwissRN), young academies, open science initiatives</div>
+<div class="c hl"><b>3 · Coalitions</b>Funders, universities and academies committing <i>together</i> -- the only way around the first-mover problem</div>
+</div>
+
+
+
+## Responsible [metrics]{.g}?
+
+<br>
+
+::: {.fragment fragment-index=1}
+<p class="rm-question">"So which metrics <i>should</i> we use instead?"</p>
+:::
+
+<br>
+
+::: {.fragment fragment-index=2}
+<p class="statement" style="font-size:1.25em;">There are no responsible metrics.<br><br><span class="g">Only responsible use of metrics.</span></p>
+:::
+
+::: {.fragment fragment-index=3}
+<p class="normal" style="margin-top:3em;">The same indicator can be informative in one assessment and harmful in another. It depends on what you want to know, about whom, and for which decision.</p>
+:::
+
+::: notes
+When people hear "responsible metrics", they ask for a list: which indicators are the good ones? But no indicator is responsible or irresponsible in itself. The question is how it is chosen and used. That's what the workflow on the next two slides is about. (CoARA working group on Responsible Metrics and Indicators.)
+:::
+
+## How metrics are usually used: [indicators first]{.g}
+
+<div class="wf">
+<div class="step hl"><b>Indicators are chosen based on availability</b></div>
+<div class="arr">→</div>
+<div class="step">It is unclear what latent construct should be measured.<br>Validity unknown</div>
+<div class="arr">→</div>
+<div class="step">Unidimensional ranking of candidates</div>
+<div class="card at1 fragment" data-fragment-index="1"><b>Because they're there</b>publication counts, impact factor, h-index, grant income: easy to download and count</div>
+<div class="card at3 fragment" data-fragment-index="2"><b>Measuring what?</b>quality? impact? productivity? prestige?</div>
+<div class="card at5 fragment" data-fragment-index="3"><b>One number</b>a single ranking of candidates, hiding every other dimension</div>
+</div>
+
+::: {.fragment fragment-index=4}
+<p class="gd" style="margin-top:1em;">The available metric decides what counts.</p>
+:::
+
+<br>
+
+<div class="people">
+<div class="person"><img src="https://www.nicebread.de/files/profiles/FS_portrait_2022_small.jpeg" alt="Felix Schönbrodt"><div><b>Felix Schönbrodt</b><br><span>LMU Munich</span></div></div>
+<div class="person"><img src="https://www.eventinem.it/media/speakers/thumbnails/2026/08/davide-crepaldi_round_RoUdenD.webp" alt="Davide Crepaldi"><div><b>Davide Crepaldi</b><br><span> University of Pavia</span></div></div>
+<div class="person"><img src="https://ue.poznan.pl/wp-content/uploads/2023/08/nawrot-1-jpg-e1691578269136-652x700.webp" alt="Katarzyna Nawrot"><div><b>Katarzyna Nawrot</b><br><span> University of Warsaw</span></div></div>
+</div>
+
+
+::: {.ref}
+[10.31222/osf.io/9cdns_v1](https://doi.org/10.31222/osf.io/9cdns_v1)
+:::
+
+## Responsible use: [start from the context]{.g} {.dense}
+
+![](img/workflow-recommended.png){.wf-fig}
+
+::: {.ref}
+[10.31222/osf.io/9cdns_v1](https://doi.org/10.31222/osf.io/9cdns_v1)
+:::
+
+::: notes
+The recommended workflow. Indicator availability enters only after you have decided what you want to measure and why. Quantitative indicators support qualitative judgement — CoARA commitment 2: "Base research assessment primarily on qualitative evaluation for which peer review is central, supported by responsible use of quantitative indicators."
+:::
+
+## Reforms are interventions -- [evaluate them]{.g} in different contexts
+
+<br>
+
+. . .
+
+Example: **open-data badges**
+
+<div class="stats" style="--n:2;">
+<div class="stat good"><div class="num">2.5% → 23%</div><div class="lab"><i>Psychological Science</i> after introducing badges (before–after)</div></div>
+<div class="stat low"><div class="num">≈4% vs ≈4%</div><div class="lab"><i>BMJ Open</i>, randomized trial of badges: no effect</div></div>
+</div>
+
+<br>
+
+Same intervention, different context, different design → different answer.
+<br>
+
+<!-- New criteria can be gamed too (narrative CVs reward good writers?) -->
+
+::: {.ref}
+Kidwell et al. (2016) PLoS Biol [10.1371/journal.pbio.1002456](https://doi.org/10.1371/journal.pbio.1002456) · Rowhani-Farid, Aldcroft & Barnett (2020) R Soc Open Sci [10.1098/rsos.191818](https://doi.org/10.1098/rsos.191818)
+:::
+
+::: notes
+Reforms change the incentive structure — so they can have unintended consequences of their own (Goodhart applies to new indicators too). Experimentation instead of tradition; evaluation built in from the start.
+:::
+
+## Take-home
+
+1. **The premise largely holds** -- promotion, funding and our own beliefs all reward the publication count  
+
+2. **It's complicated** -- no researcher, university or funder can leave it alone  
+
+4. **Incentives are designed** --  funders and institutions have many degrees of freedom; map them, test them, and [redesign]{.g} those incentives  
+
+5. **Reforms came from evidence, communities and coalitions** -- and they need evaluation, too  
+
+
+## Thank you! {.no-logo}
+
+:::: {.columns}
+::: {.column width="55%"}
+**Rachel Heyard**<br>
+Center for Reproducible Science and Research Synthesis, UZH<br>
+[rachel.heyard\@uzh.ch]{.small}
+
+:::
+::: {.column width="45%"}
+
+![](img/keynote/uzh-logo.png){width="45%" style="margin-top:0.6em;"} ![](img/keynote/crs-logo.png){width="16%"}
+:::
+::::
+

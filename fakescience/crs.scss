@@ -1,0 +1,225 @@
+/*-- scss:defaults --*/
+// CRS / UZH look, taken from the January 2026 keynote
+$crs-green: #7CA023;
+$crs-green-dark: #557316;   // text-safe green (AA on white)
+$crs-grey: #EFEFEF;
+$ink: #1d1d1b;
+$muted: #6b6b6b;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,800;1,400&display=swap');
+
+/* Collaborators: round photos with names */
+.reveal .people { display: flex; gap: 1.6em; align-items: center; margin: 0.2em 0 0.8em 0; }
+.reveal .people .person { display: flex; align-items: center; gap: 0.5em; font-size: 0.68em; line-height: 1.25; }
+.reveal .people .person img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: center top; margin: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.reveal .people .person span { color: $muted; }
+
+$font-family-sans-serif: "Inter", "Helvetica Neue", Arial, sans-serif;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $ink;
+$presentation-heading-font-weight: 800;
+$presentation-h2-font-size: 1.45em;
+$body-color: $ink;
+$link-color: $crs-green-dark;
+$presentation-font-size-root: 30px;
+$presentation-line-height: 1.35;
+
+/*-- scss:rules --*/
+.reveal h2 { letter-spacing: -0.01em; margin-bottom: 0.5em; }
+.reveal .g, .reveal h2 .g, .reveal h1 .g { color: $crs-green; }
+.reveal .gd { color: $crs-green-dark; font-weight: 600; }
+.reveal .muted { color: $muted; }
+.reveal .small { font-size: 0.7em; }
+.reveal .tiny  { font-size: 0.55em; }
+
+/* CRS logo top-right on every content slide (like the keynote) */
+.reveal .slides section:not(.title-slide):not(.no-logo)::after {
+  content: ""; position: absolute; top: -8px; right: -10px;
+  width: 78px; height: 78px;
+  background: url("img/keynote/crs-logo.png") center / contain no-repeat;
+}
+
+/* Section dividers: grey background like the keynote */
+.reveal .slides section.section-slide h1,
+.reveal .slides section.section-slide h2 { font-size: 1.9em; }
+.reveal .slides section.section-slide .kicker {
+  color: $crs-green-dark; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; font-size: 0.6em;
+}
+
+/* Reference line at the bottom of a slide */
+.reveal .ref {
+  position: absolute; bottom: -4px; left: 0; right: 110px;
+  font-size: 0.45em; color: $muted; line-height: 1.3;
+}
+.reveal .ref a { color: $muted; text-decoration: underline; }
+
+/* Visible placeholders – easy to spot and to delete */
+.reveal .placeholder {
+  border: 2px dashed #b9b9b9; border-radius: 10px; background: #fafafa;
+  color: #8a8a8a; padding: 0.6em 0.8em; font-size: 0.6em; line-height: 1.35;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 3em;
+}
+.reveal .placeholder::before { content: "✎ "; }
+
+/* Big-number stat tiles */
+.reveal .stats { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: 0.6em; margin-top: 0.4em; }
+.reveal .stat { background: #f6f6f4; border-radius: 12px; padding: 0.45em 0.55em; }
+.reveal .stat .num { font-size: 1.9em; font-weight: 800; line-height: 1.05; color: $ink; }
+.reveal .stat .lab { font-size: 0.55em; color: $muted; line-height: 1.25; margin-top: 0.2em; }
+.reveal .stat.good .num { color: $crs-green-dark; }
+.reveal .stat.low  .num { color: #9a9a9a; }
+
+/* Cards for design levers / projects */
+.reveal .cards { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); gap: 0.5em; }
+.reveal .card { background: #f6f6f4; border-radius: 12px; padding: 0.5em 0.65em; font-size: 1em; line-height: 1.3; }
+.reveal .card b { display: block; font-size: 1.5em; margin-bottom: 0.2em; }
+.reveal .card.hl { background: rgba(124, 160, 35, 0.14); }
+
+/* Project badge */
+.reveal .project-tag {
+  display: inline-block; background: $crs-green; color: white; font-weight: 700;
+  border-radius: 999px; padding: 0.1em 0.7em; font-size: 0.5em; letter-spacing: 0.04em;
+  text-transform: uppercase; vertical-align: middle;
+}
+
+/* Lists */
+.reveal ul li { margin-bottom: 0.25em; }
+.reveal ul.arrows { list-style: none; padding-left: 0; }
+.reveal .arrows li::before { content: "→ "; color: $crs-green; font-weight: 700; }
+
+/* Big statement slide */
+.reveal .statement { font-size: 1.45em; font-weight: 800; line-height: 1.2; }
+
+/* Images */
+.reveal .shadow img, .reveal img.shadow { box-shadow: 0 4px 18px rgba(0,0,0,0.12); border-radius: 4px; }
+
+/* Title slide */
+.reveal .title-slide h1.title { font-size: 1.75em; color: #1f3a68; line-height: 1.15; }
+.reveal .title-slide .subtitle { color: $crs-green-dark; font-size: 0.95em; }
+.reveal .title-slide .quarto-title-author-name, .reveal .title-slide .date { font-size: 0.7em; }
+
+.reveal .slide-number { color: $muted; }
+.reveal .footer { font-size: 0.4em; color: $muted; }
+
+/* Mermaid diagrams: fill the column */
+.reveal .cell-output-display svg, .reveal pre.mermaid svg, .reveal .mermaid svg { width: 100% !important; max-width: 100% !important; height: auto !important; }
+.reveal div.cell-output-display { width: 100%; }
+
+/* Simple HTML flow diagrams (editable, no JS) */
+.reveal .flow { display: flex; align-items: stretch; gap: 0.35em; justify-content: center; }
+.reveal .flow .node, .reveal .pipe .node {
+  flex: 1; background: #f6f6f4; border: 2px solid #d9d9d9; border-radius: 10px;
+  padding: 0.4em 0.5em; font-size: 0.6em; line-height: 1.3; text-align: center;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.reveal .node.hl { border-color: $crs-green; background: rgba(124,160,35,0.14); }
+.reveal .node.dim { color: #8a8a8a; }
+.reveal .flow .arr, .reveal .pipe .arr { align-self: center; color: $crs-green; font-weight: 800; font-size: 0.75em; }
+.reveal .tree .down { text-align: center; color: $crs-green; font-weight: 800; font-size: 0.7em; line-height: 1.2; }
+.reveal .pipe { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr; gap: 0.3em; align-items: stretch; }
+.reveal .pipe .lab { font-size: 0.5em; margin-top: 0.3em; grid-column: 1 / 4; }
+
+/* Slightly denser slides (milder than Quarto's .smaller) */
+.reveal .slides section.dense > *:not(h2):not(.ref) { font-size: 0.86em; }
+.reveal .slides section.dense .flow .node, .reveal .slides section.dense .pipe .node { font-size: 0.62em; }
+
+/* ===== Moved from inline styles / <style> blocks in slides.qmd ===== */
+
+/* Title slide (custom, first slide) */
+.reveal .title-block { margin-top: 150px; max-width: 900px; }
+.reveal .title-main { font-size: 1.75em; color: #1f3a68; line-height: 1.15; margin-bottom: 0.25em; }
+.reveal .title-sub { font-size: 1.1em; color: $crs-green-dark; font-weight: 600; line-height: 1.25; }
+.reveal .title-author { margin-top: 1.4em; font-size: 0.7em; }
+.reveal .title-event { font-size: 0.6em; }
+
+/* Logo row (disclosures slide) */
+.reveal .logo-row { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5em; }
+.reveal .logo-row img { max-height: 55px; max-width: 150px; margin: 0; }
+.reveal .logo-row img:first-child { padding: 0 150px; }
+.reveal .logo-row img:last-child { padding-left: 150px; }
+
+/* Smaller cards (funders slide) */
+.reveal .card.sm { font-size: 0.58em; }
+
+/* Circle diagram: 2x2 boxes, arrows clockwise */
+.reveal .circle {
+  display: grid; grid-template-columns: 1fr 2.2em 1fr; gap: 0.5em 0.3em; align-items: center;
+  margin-top: 0.6em; font-size: 0.68em; text-align: center; line-height: 1.3;
+}
+.reveal .circle .box {
+  background: #f6f6f4; border: 2px solid #d9d9d9; border-radius: 12px; padding: 0.6em; min-height: 5em;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.reveal .circle .box.hl { background: rgba(124,160,35,0.14); border-color: $crs-green; }
+.reveal .circle .arrow { color: $crs-green; font-weight: 800; font-size: 1.8em; line-height: 1; }
+.reveal .circle .spacer { min-height: 1px; }
+
+/* Timeline (A decade of reform) */
+.reveal .tl { display: grid; grid-template-columns: repeat(6, 1fr); column-gap: 0.35em; row-gap: 0.35em; margin-top: 0.4em; }
+.reveal .tl .yr { font-weight: 800; color: $crs-green-dark; font-size: 0.85em; }
+.reveal .tl .line { grid-column: 1 / 7; height: 4px; background: $crs-green; border-radius: 2px; margin: -0.1em 0 0.15em 0; }
+.reveal .tl .ev { background: #f6f6f4; border-radius: 10px; padding: 0.5em 0.55em; font-size: 0.55em; line-height: 1.3; }
+.reveal .tl .ev b { display: block; font-size: 1.15em; margin-bottom: 0.15em; }
+.reveal .tl .ev.hl { background: rgba(124,160,35,0.18); }
+.reveal .tl .ev.sw { grid-row: 4; background: #e9edf5; margin-top: 0.6em; }
+.reveal .tl .lab { grid-column: 1 / 3; grid-row: 4; align-self: center; margin-top: 0.6em; font-size: 0.55em; font-weight: 800; color: #1f3a68; text-transform: uppercase; letter-spacing: 0.08em; text-align: right; padding-right: 0.5em; }
+.reveal .tl .todo { color: #8a8a8a; }
+
+/* How did reforms come about: three drivers + example chain */
+.reveal .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4em; margin-top: 0.3em; }
+.reveal .why .c { background: #f6f6f4; border-radius: 12px; padding: 0.55em 0.65em; font-size: 0.65em; line-height: 1.3; }
+.reveal .why .c b { display: block; font-size: 1.15em; margin-bottom: 0.2em; }
+.reveal .why .c.hl { background: rgba(124,160,35,0.18); }
+.reveal .chain { display: flex; align-items: stretch; gap: 0.3em; margin-top: 0.3em; }
+.reveal .chain .n { flex: 1; background: #f6f6f4; border: 2px solid #d9d9d9; border-radius: 10px; padding: 0.45em 0.5em; font-size: 0.6em; line-height: 1.3; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+.reveal .chain .n.hl { border-color: $crs-green; background: rgba(124,160,35,0.14); }
+.reveal .chain .n span { color: $muted; }
+.reveal .chain .a { align-self: center; color: $crs-green; font-weight: 800; font-size: 0.9em; }
+.reveal .chain-lab { font-size: 0.55em; font-weight: 800; color: $crs-green-dark; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 1em; }
+
+/* Title slide logos */
+.reveal .title-logo-uzh { position: absolute; top: -10px; left: 0; width: 230px; margin: 0; }
+.reveal .title-logo-crs { position: absolute; top: -14px; right: 0; width: 80px; margin: 0; }
+.reveal .title-target  { position: absolute; bottom: 40px; right: 20px; width: 230px; margin: 0; }
+
+/* Timeline: SNSF row column positions */
+.reveal .tl .ev.c3 { grid-column: 3; }
+.reveal .tl .ev.c4 { grid-column: 4; }
+.reveal .tl .ev.c5 { grid-column: 5; }
+.reveal .tl .ev.c6 { grid-column: 6; }
+
+/* Pipeline label aligned right (integrity checks slide) */
+.reveal .pipe .lab.right { grid-column: 7 / 10; text-align: right; }
+
+/* Grey one-line subtitle under a slide title */
+.reveal .subline { font-size: 0.7em; color: $muted; margin-top: -0.4em; }
+
+/* Closing statement slide */
+.reveal .statement.closing { margin-top: 150px; }
+.reveal .closing-note { margin-top: 1.2em; font-size: 0.7em; }
+
+/* Responsible-metrics workflow figure: cap height so it clears the reference line */
+.reveal .workflow-fig { max-height: 530px; width: auto; margin: 0; }
+
+/* Medium-size cards (e.g. "Incentives are designed", workflow slide) */
+.reveal .cards.md .card { font-size: 0.68em; }
+
+/* Responsible metrics slides */
+.reveal .rm-question { font-size: 1.3em; font-style: italic; color: $ink; margin-bottom: 0.1em; }
+.reveal .wf-fig { max-height: 560px; width: auto; margin: 0; }
+
+/* Workflow strip: 3 steps with arrows, a card under each step */
+.reveal .wf { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 1em 0.4em; align-items: stretch; margin-top: 1.4em; }
+.reveal .wf .step {
+  background: #f6f6f4; border: 2px solid #d9d9d9; border-radius: 10px; padding: 0.6em 0.7em;
+  font-size: 0.82em; line-height: 1.3; text-align: center; min-height: 5.5em;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.reveal .wf .step.hl { border-color: $crs-green; background: rgba(124,160,35,0.14); }
+.reveal .wf .arr { align-self: center; color: $crs-green; font-weight: 800; font-size: 1.1em; }
+.reveal .wf .card { grid-row: 2; font-size: 0.72em; }
+.reveal .wf .card.at1 { grid-column: 1; }
+.reveal .wf .card.at3 { grid-column: 3; }
+.reveal .wf .card.at5 { grid-column: 5; }
